@@ -13,7 +13,7 @@ export function AuthGuard({ children }: { children: JSX.Element }) {
     }
   }, [isAuthenticated]);
 
-
+console.log('gaus')
   // if auth initialized with a valid user show protected page
   /* otherwise don't return anything, will do a redirect from useEffect */
   return <>{isAuthenticated ? children : null}</>;

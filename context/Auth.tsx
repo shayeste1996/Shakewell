@@ -2,15 +2,17 @@ import React, { useEffect, useState, Dispatch, SetStateAction } from "react";
 import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
 import { instance } from "fetchApi";
+import { IUser } from "types";
+import { Loading } from "components/Loading";
 import Cookies from "js-cookie";
-import { Loading } from "@components/Loading";
 
 export const AuthContext = React.createContext<
   | {
-      user: null;
+      user: IUser;
       isAuthenticated: boolean;
       setIsAuthenticated: Dispatch<SetStateAction<boolean>>;
-      setUser: Dispatch<SetStateAction<null>>;
+      setUser: Dispatch<SetStateAction<IUser>>;
+      logout: () => void;
     }
   | undefined
 >(undefined);
@@ -28,24 +30,34 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }: { children: JSX.Element }) {
-  const [user, setUser] = useState<null>(null);
+  const [user, setUser] = useState<IUser>({
+    email: "",
+    password: "",
+    password_confirmation: "",
+    first_name: "",
+    last_name: "",
+    username: "",
+  });
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const { isLoading } = useQuery(["token-check"], async () => {
     return await instance.get(`auth/token/check`).then(() => {
       setIsAuthenticated(true);
     });
-  });
+  }); 
+   const router = useRouter();
 
-  const router = useRouter();
+  const logout = () => {
+    Cookies.remove("token-test");
+    setIsAuthenticated(false);
+    router.push('/signin')
+  };
 
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const handleStart = (url: string) =>
-      url !== router.asPath && setLoading(true);
-    const handleComplete = (url: string) =>
-      url === router.asPath && setLoading(false);
+    const handleStart = (url: string) => setLoading(true);
+    const handleComplete = (url: string) => setLoading(false);
 
     router.events.on("routeChangeStart", handleStart);
     router.events.on("routeChangeComplete", handleComplete);
@@ -62,8 +74,9 @@ export function AuthProvider({ children }: { children: JSX.Element }) {
     isAuthenticated,
     setIsAuthenticated,
     setUser,
+    logout,
   };
-
+  console.log(isLoading, "isLoading", loading, "loading",isAuthenticated,"isAuthenticated");
   return (
     <AuthContext.Provider value={value}>
       {isLoading || loading ? <Loading /> : children}

@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import { Spinner } from "@components/Spinner";
+import { Spinner } from "components/Spinner";
 
 interface Props {
   text: string;

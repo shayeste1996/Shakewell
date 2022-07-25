@@ -1,6 +1,6 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import { ReactNode, ReactElement, useState } from "react";
+import { ReactNode, useState } from "react";
 import { NextComponentType, NextPageContext, NextPage } from "next";
 import {
   QueryClient,
@@ -11,7 +11,6 @@ import Head from "next/head";
 import { AuthProvider } from "context/Auth";
 import { AuthGuard } from "components/AuthGaurd";
 
-const twentyFourHoursInMs = 1000 * 60 * 60 * 24;
 type NextPageWithAuth<P = {}, IP = P> = NextPage<P, IP> & {
   requireAuth?: boolean;
 };
@@ -27,6 +26,7 @@ function MyApp({
   Component,
   pageProps: { session, ...pageProps },
 }: CustomAppProps) {
+  const twentyFourHoursInMs = 1000 * 60 * 60 * 24;
   const getLayout = Component.getLayout || ((page) => page);
   const [queryClient] = useState(
     () =>
@@ -54,7 +54,7 @@ function MyApp({
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta
           name="description"
-          content="Next.js Client side sign in example"
+          content="Shakewell"
           key="description"
         />
       </Head>

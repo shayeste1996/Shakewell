@@ -4,9 +4,9 @@ import Cookies from "js-cookie";
 import { useMutation } from "@tanstack/react-query";
 import { instance } from "fetchApi";
 import useTranslation from "next-translate/useTranslation";
-import { Input } from "@components/Input";
-import { Button } from "@components/Button";
-import AuthLayout from "@layout/auth";
+import { Input } from "components/Input";
+import { Button } from "components/Button";
+import AuthLayout from "layout/auth";
 import { useAuth } from "context/Auth";
 
 interface IUser {

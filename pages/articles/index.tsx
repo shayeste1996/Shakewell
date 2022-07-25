@@ -1,10 +1,10 @@
-import { NextPage } from "next";
+import { ReactNode } from "react";
 import { useQuery, QueryClient, dehydrate } from "@tanstack/react-query";
 import useTranslation from "next-translate/useTranslation";
 import { instance } from "fetchApi";
-import { ArticleCard } from "@components/ArticleCard";
+import { ArticleCard } from "components/ArticleCard";
 import { getRelativeTime } from "utils";
-
+import MainLayout from "layout/main";
 interface Props {
   articles: [];
 }
@@ -33,27 +33,25 @@ export default function Articles() {
   const { t } = useTranslation("common");
 
   return (
-    <div className="bg-signup-bg 	bg-no-repeat bg-cover">
-      <div className="mx-auto py-[100px] max-w-[1400px]">
-        <h1 className="text-white font-bold text-3xl mb-10">
-          {t("latest_article")}
-        </h1>
-        <div className="flex flex-wrap gap-y-5">
-          {data?.map((item) => (
-            <div className="flex-[0_0_320px] w-max-[320px]" key={item.id}>
-              <ArticleCard
-                title={item.title}
-                date={getRelativeTime(
-                  +new Date(+new Date(item.published_at) - 60 * 60 * 1000)
-                )}
-                image="/images/article-img.png"
-                id={item.id}
-              />
-            </div>
-          ))}
-        </div>
+    <>
+      <h1 className="text-white font-bold text-3xl mb-10">
+        {t("latest_article")}
+      </h1>
+      <div className="flex flex-wrap gap-y-5">
+        {data?.map((item) => (
+          <div className="flex-[0_0_320px] w-max-[320px]" key={item.id}>
+            <ArticleCard
+              title={item.title}
+              date={getRelativeTime(
+                +new Date(+new Date(item.published_at) - 60 * 60 * 1000)
+              )}
+              image="/images/article-img.png"
+              id={item.id}
+            />
+          </div>
+        ))}
       </div>
-    </div>
+    </>
   );
 }
 
@@ -64,3 +62,6 @@ export async function getStaticProps() {
   //getting data on the server
   return { props: { dehydratedState: dehydrate(queryClient) } };
 }
+Articles.getLayout = function getLayout(page: ReactNode) {
+  return <MainLayout>{page}</MainLayout>;
+};

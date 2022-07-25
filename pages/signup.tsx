@@ -4,19 +4,13 @@ import useTranslation from "next-translate/useTranslation";
 import { useMutation } from "@tanstack/react-query";
 import { instance } from "fetchApi";
 import Cookies from "js-cookie";
-import { Input } from "@components/Input";
-import { Button } from "@components/Button";
-import AuthLayout from "@layout/auth";
+import { Input } from "components/Input";
+import { Button } from "components/Button";
+import AuthLayout from "layout/auth";
 import { useAuth } from "context/Auth";
+import { IUser } from "types";
+import { useRouter } from "next/router";
 
-interface IUser {
-  email: string;
-  password: string;
-  password_confirmation: string;
-  first_name: string;
-  last_name: string;
-  username: string;
-}
 interface IError {
   response: {
     data: {
@@ -27,7 +21,7 @@ interface IError {
 
 export default function Signup() {
   const { t } = useTranslation("common");
-  const { setIsAuthenticated } = useAuth();
+  const { setIsAuthenticated, setUser } = useAuth();
 
   const [values, setValues] = useState<IUser>({
     email: "",
@@ -45,6 +39,8 @@ export default function Signup() {
     last_name: "",
     username: "",
   });
+  const router = useRouter();
+
   const { isLoading, mutate } = useMutation(
     async () => {
       return await instance.post(`auth/register`, {
@@ -64,7 +60,9 @@ export default function Signup() {
           last_name: "",
           username: "",
         });
-        setIsAuthenticated(true);
+        setUser(values);
+        // setIsAuthenticated(true);
+        router.push('/verify')
       },
       onError: (err: IError) => {
         if (err.response.data.errors) {
@@ -83,7 +81,7 @@ export default function Signup() {
       [name]: value,
     });
   };
-  console.log('auth sign up')
+  console.log("auth sign up");
 
   return (
     <>

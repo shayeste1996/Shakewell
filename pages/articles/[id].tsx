@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 import { useQuery } from "@tanstack/react-query";
 import {
   QueryClient,
@@ -6,6 +8,7 @@ import {
   QueryKey,
 } from "@tanstack/react-query";
 import { instance } from "fetchApi";
+import MainLayout from "layout/main";
 
 const getArticleInfo = async ({
   queryKey,
@@ -34,15 +37,12 @@ interface Data {
 export default function Article({ id }: Verification) {
   const { data } = useQuery<Data>(["article", id], getArticleInfo);
   return (
-    <main className="relative">
-      <div className="bg-signup-bg  min-h-screen	bg-no-repeat bg-cover absolute inset-0 z-0" />
-      <div className="mx-auto py-[100px] max-w-[1200px] text-white relative z-2">
-        <h1 className="text-white font-bold text-3xl mb-10">{data?.title}</h1>
-        <p className="text-xl">{data?.short_description}</p>
-        <span className="mt-5 text-xs flex">by {data?.author}</span>
-        <div className="flex flex-wrap gap-y-5"></div>
-      </div>
-    </main>
+    <div className="text-white">
+      <h1 className=" font-bold text-3xl mb-10">{data?.title}</h1>
+      <p className="text-xl">{data?.short_description}</p>
+      <span className="mt-5 text-xs flex">by {data?.author}</span>
+      <div className="flex flex-wrap gap-y-5"></div>
+    </div>
   );
 }
 Article.requireAuth = true;
@@ -54,3 +54,6 @@ export async function getServerSideProps(context: Context) {
   //getting data on the server
   return { props: { dehydratedState: dehydrate(queryClient), id } };
 }
+Article.getLayout = function getLayout(page: ReactNode) {
+  return <MainLayout>{page}</MainLayout>;
+};
