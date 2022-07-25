@@ -1,6 +1,5 @@
-import { ReactNode, useEffect } from "react";
+import { ReactNode } from "react";
 import { NextPage } from "next";
-import { useRouter } from "next/router";
 import { useAuth } from "context/Auth";
 
 type Props = {
@@ -8,7 +7,6 @@ type Props = {
 };
 const MainLayout: NextPage<Props> = ({ children }) => {
   const { isAuthenticated, logout } = useAuth();
-  const router = useRouter();
 
   return (
     <>

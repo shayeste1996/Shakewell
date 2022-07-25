@@ -21,15 +21,14 @@ AuthContext.displayName = "AuthContext";
 
 export function useAuth() {
   const auth = React.useContext(AuthContext);
-
   if (!auth) {
     throw new Error("useAuth must be used within AuthProvider");
   }
-
   return auth;
 }
 
 export function AuthProvider({ children }: { children: JSX.Element }) {
+  const router = useRouter();
   const [user, setUser] = useState<IUser>({
     email: "",
     password: "",
@@ -40,24 +39,25 @@ export function AuthProvider({ children }: { children: JSX.Element }) {
   });
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+  // check if user token is valid
   const { isLoading } = useQuery(["token-check"], async () => {
     return await instance.get(`auth/token/check`).then(() => {
       setIsAuthenticated(true);
     });
-  }); 
-   const router = useRouter();
+  });
 
   const logout = () => {
     Cookies.remove("token-test");
     setIsAuthenticated(false);
-    router.push('/signin')
+    router.push("/signin");
   };
 
   const [loading, setLoading] = useState(false);
 
+  // show loading on route change
   useEffect(() => {
-    const handleStart = (url: string) => setLoading(true);
-    const handleComplete = (url: string) => setLoading(false);
+    const handleStart = () => setLoading(true);
+    const handleComplete = () => setLoading(false);
 
     router.events.on("routeChangeStart", handleStart);
     router.events.on("routeChangeComplete", handleComplete);
@@ -76,7 +76,6 @@ export function AuthProvider({ children }: { children: JSX.Element }) {
     setUser,
     logout,
   };
-  console.log(isLoading, "isLoading", loading, "loading",isAuthenticated,"isAuthenticated");
   return (
     <AuthContext.Provider value={value}>
       {isLoading || loading ? <Loading /> : children}

@@ -1,17 +1,7 @@
 import { NextPage } from "next";
+import { IInput } from "types";
 
-interface Props {
-  label?: string;
-  placeholder?: string;
-  name?: string;
-  error?: string;
-  type?: string;
-  onChange: (
-    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
-  ) => void;
-}
-
-export const Input: NextPage<Props> = (props) => {
+export const Input: NextPage<IInput> = (props) => {
   const { label, placeholder, name, onChange, error, type = "text" } = props;
 
   return (

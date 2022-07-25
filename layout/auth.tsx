@@ -10,6 +10,8 @@ const AuthLayout: NextPage<Props> = ({ children }) => {
   const { isAuthenticated } = useAuth();
   const router = useRouter();
 
+  // if user is logged in so authentication page must not be shown
+  // and redirect to main page
   useEffect(() => {
     if (isAuthenticated) {
       router.push("/articles");

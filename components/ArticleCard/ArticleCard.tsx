@@ -1,13 +1,8 @@
 import { NextPage } from "next";
 import Link from "next/link";
+import { Article } from "types";
 
-interface Props {
-  title: string;
-  image: string;
-  date: string | undefined;
-  id: string;
-}
-export const ArticleCard: NextPage<Props> = (props) => {
+export const ArticleCard: NextPage<Article> = (props) => {
   const { title, image, date, id } = props;
 
   return (

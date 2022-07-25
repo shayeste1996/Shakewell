@@ -1,15 +1,8 @@
 import { NextPage } from "next";
 import { Spinner } from "components/Spinner";
+import { IButton } from "types";
 
-interface Props {
-  text: string;
-  type?: string;
-  btnType?: "button" | "submit" | "reset" | undefined;
-  onClick: () => void;
-  loading?: boolean;
-}
-
-export const Button: NextPage<Props> = (props) => {
+export const Button: NextPage<IButton> = (props) => {
   const {
     text,
     type = "primary",

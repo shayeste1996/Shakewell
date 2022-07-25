@@ -16,8 +16,10 @@
   "no_account": "Don’t have an account?",
   "latest_article": "Latest Articles",
   "verfiy_email": "Please verify your email",
-  "email_desc1":"you're almost there! We sent an email to",
-  "email_desc2":"Just click on the link in that email to compelete your signup.",
+  "email_desc1": "you're almost there! We sent an email to",
+  "email_desc2": "Just click on the link in that email to compelete your signup.",
   "email_desc3": "Still can't find the email?",
-  "resend_email": "Resend Email"
+  "resend_email": "Resend Email",
+  "verification": "Verification",
+  "articles": "articles"
 }

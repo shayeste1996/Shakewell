@@ -2,6 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 const baseUrl = "https://riptide.shakewell.net/api/v1/";
+
 export const instance = axios.create({
   baseURL: baseUrl,
   headers: {

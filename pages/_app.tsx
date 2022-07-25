@@ -1,15 +1,15 @@
-import "../styles/globals.css";
-import type { AppProps } from "next/app";
 import { ReactNode, useState } from "react";
 import { NextComponentType, NextPageContext, NextPage } from "next";
+import type { AppProps } from "next/app";
+import Head from "next/head";
 import {
   QueryClient,
   QueryClientProvider,
   Hydrate,
 } from "@tanstack/react-query";
-import Head from "next/head";
 import { AuthProvider } from "context/Auth";
 import { AuthGuard } from "components/AuthGaurd";
+import "../styles/globals.css";
 
 type NextPageWithAuth<P = {}, IP = P> = NextPage<P, IP> & {
   requireAuth?: boolean;
@@ -52,11 +52,7 @@ function MyApp({
         />
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <meta
-          name="description"
-          content="Shakewell"
-          key="description"
-        />
+        <meta name="description" content="Shakewell" key="description" />
       </Head>
       <QueryClientProvider client={queryClient} contextSharing={true}>
         <Hydrate state={pageProps.dehydratedState}>
