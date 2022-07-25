@@ -1,3 +1,49 @@
 {
-  "extends": "next/core-web-vitals"
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react"],
+  "rules": {
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+
+    "react/jsx-filename-extension": [
+      "warn",
+      {
+        "extensions": [".js", ".jsx"]
+      }
+    ],
+    "react/jsx-props-no-spreading": 0
+  },
+  "globals": {
+    "React": "writable"
+  },
+  "overrides": [
+    {
+      "files": "**/*.+(ts|tsx|js|jsx)",
+      "extends": ["plugin:prettier/recommended"],
+      "rules": {
+        "prettier/prettier": [
+          "error",
+          { "usePrettierrc": true, "endOfLine": "auto" }
+        ]
+      }
+    }
+  ]
 }
