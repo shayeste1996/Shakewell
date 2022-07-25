@@ -2,10 +2,10 @@ import { ReactNode } from "react";
 import Head from "next/head";
 import { useMutation } from "@tanstack/react-query";
 import useTranslation from "next-translate/useTranslation";
-import { Button } from "components/Button";
+import { Button } from "components/ui/Button";
 import AuthLayout from "layout/auth";
 import { useAuth } from "context/Auth";
-import { instance } from "fetchApi";
+import { instance } from "libs/axiosInstance";
 
 export default function Verify() {
   const { t } = useTranslation("common");

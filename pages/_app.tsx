@@ -8,8 +8,9 @@ import {
   Hydrate,
 } from "@tanstack/react-query";
 import { AuthProvider } from "context/Auth";
-import { AuthGuard } from "components/AuthGaurd";
+import { AuthGuard } from "layout/protected";
 import "../styles/globals.css";
+import Link from "next/link";
 
 type NextPageWithAuth<P = {}, IP = P> = NextPage<P, IP> & {
   requireAuth?: boolean;
@@ -53,6 +54,12 @@ function MyApp({
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="Shakewell" key="description" />
+        <Link
+          href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400;1,500&display=swap"
+          rel="stylesheet"
+        >
+          <a></a>
+        </Link>
       </Head>
       <QueryClientProvider client={queryClient} contextSharing={true}>
         <Hydrate state={pageProps.dehydratedState}>

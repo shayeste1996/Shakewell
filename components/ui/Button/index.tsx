@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import { Spinner } from "components/Spinner";
+import { Spinner } from "components/ui/Spinner";
 import { IButton } from "types";
 
 export const Button: NextPage<IButton> = (props) => {

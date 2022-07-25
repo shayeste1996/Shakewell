@@ -8,7 +8,7 @@ import {
 } from "@tanstack/react-query";
 import Head from "next/head";
 import MainLayout from "layout/main";
-import { instance } from "fetchApi";
+import { instance } from "libs/axiosInstance";
 import { Article, IContext } from "types";
 
 const getArticleInfo = async ({

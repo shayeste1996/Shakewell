@@ -5,12 +5,12 @@ import { useRouter } from "next/router";
 import useTranslation from "next-translate/useTranslation";
 import { useMutation } from "@tanstack/react-query";
 import Cookies from "js-cookie";
-import { Input } from "components/Input";
-import { Button } from "components/Button";
+import { Input } from "components/ui/Input";
+import { Button } from "components/ui/Button";
 import AuthLayout from "layout/auth";
 import { useAuth } from "context/Auth";
 import { IUser } from "types";
-import { instance } from "fetchApi";
+import { instance } from "libs/axiosInstance";
 
 interface IError {
   response: {

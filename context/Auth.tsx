@@ -1,9 +1,9 @@
 import React, { useEffect, useState, Dispatch, SetStateAction } from "react";
 import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
-import { instance } from "fetchApi";
+import { instance } from "libs/axiosInstance";
 import { IUser } from "types";
-import { Loading } from "components/Loading";
+import { Loading } from "components/ui/Loading";
 import Cookies from "js-cookie";
 
 export const AuthContext = React.createContext<
@@ -31,8 +31,6 @@ export function AuthProvider({ children }: { children: JSX.Element }) {
   const router = useRouter();
   const [user, setUser] = useState<IUser>({
     email: "",
-    password: "",
-    password_confirmation: "",
     first_name: "",
     last_name: "",
     username: "",

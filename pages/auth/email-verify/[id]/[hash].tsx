@@ -1,6 +1,6 @@
 import { ReactNode, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { instance } from "fetchApi";
+import { instance } from "libs/axiosInstance";
 import { useRouter } from "next/router";
 import { useAuth } from "context/Auth";
 import AuthLayout from "layout/auth";
