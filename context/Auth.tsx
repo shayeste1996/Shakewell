@@ -1,7 +1,7 @@
 import React, { useEffect, useState, Dispatch, SetStateAction } from "react";
 import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
-import { instance } from "libs/axiosInstance";
+import { instance } from "requests/request";
 import { IUser } from "types";
 import { Loading } from "components/ui/Loading";
 import Cookies from "js-cookie";

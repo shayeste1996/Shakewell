@@ -10,7 +10,7 @@ import { Button } from "components/ui/Button";
 import AuthLayout from "layout/auth";
 import { useAuth } from "context/Auth";
 import { IUser } from "types";
-import { instance } from "libs/axiosInstance";
+import { instance } from "requests/request";
 
 interface IError {
   response: {

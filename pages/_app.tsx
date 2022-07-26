@@ -54,12 +54,13 @@ function MyApp({
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="Shakewell" key="description" />
-        <Link
+        <link
+          rel="preload"
           href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400;1,500&display=swap"
-          rel="stylesheet"
-        >
-          <a></a>
-        </Link>
+          as="font"
+          type="font/woff"
+          crossOrigin=""
+        />
       </Head>
       <QueryClientProvider client={queryClient} contextSharing={true}>
         <Hydrate state={pageProps.dehydratedState}>

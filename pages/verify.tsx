@@ -5,7 +5,7 @@ import useTranslation from "next-translate/useTranslation";
 import { Button } from "components/ui/Button";
 import AuthLayout from "layout/auth";
 import { useAuth } from "context/Auth";
-import { instance } from "libs/axiosInstance";
+import { instance } from "requests/request";
 
 export default function Verify() {
   const { t } = useTranslation("common");

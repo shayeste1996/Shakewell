@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import Head from "next/head";
 import { useQuery, QueryClient, dehydrate } from "@tanstack/react-query";
 import useTranslation from "next-translate/useTranslation";
-import { instance } from "libs/axiosInstance";
+import { instance } from "requests/request";
 import { ArticleCard } from "components/common/ArticleCard";
 import { getRelativeTime } from "utils";
 import MainLayout from "layout/main";
