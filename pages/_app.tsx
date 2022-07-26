@@ -10,7 +10,6 @@ import {
 import { AuthProvider } from "context/Auth";
 import { AuthGuard } from "layout/protected";
 import "../styles/globals.css";
-import Link from "next/link";
 
 type NextPageWithAuth<P = {}, IP = P> = NextPage<P, IP> & {
   requireAuth?: boolean;
